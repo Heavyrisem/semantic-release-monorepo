@@ -52,9 +52,7 @@ const onlyPackageCommits = async commits => {
       );
 
       // Check if the file is in any of the specified dependencies
-      const isInDependencies = dependencySegmentsList.some(depSegments =>
-        depSegments.every((seg, i) => seg === fileSegments[i])
-      );
+      const isInDependencies = dependencies.map(dep => fileSegments.join("/").startsWith(dep.split(path.sep).join("/")))
 
       return isInPackage || isInDependencies;
     };
